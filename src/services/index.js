@@ -4,6 +4,7 @@ export const FormDataApi = axios.create({
   withCredentials: true,
   baseURL: "https://dnk-backend.onrender.com/api/",
   headers: {
+    "Access-Control-Allow-Origin": "*",
     "Content-Type": "application/multipart/form-data",
     Authorization: "Bearer " + localStorage.getItem("_user_access_token"),
   },
@@ -12,5 +13,8 @@ export const FormDataApi = axios.create({
 export const api = axios.create({
   withCredentials: true,
   baseURL: "https://dnk-backend.onrender.com/api/",
-  Authorization: "Bearer " + localStorage.getItem("_user_access_token"),
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+    Authorization: "Bearer " + localStorage.getItem("_user_access_token"),
+  },
 });
