@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { createorders } from "../../services/order";
 
 const Styles = { shape: "rect", layout: "vertical", label: "buynow" };
-
+ 
 function CartCard() {
   const { product_to_buy, total_price, Cart_items } = useSelector(
     (selector) => selector.Cart
