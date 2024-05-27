@@ -1,6 +1,5 @@
-# Dnk_Frontend
- 
-# Ecommerce Frontend with Vite
+
+# Ecommerce Frontend with Vite (Dnk_Frontend)
 
 Welcome to the repository for our Ecommerce frontend built using Vite! This repository contains the codebase for the user interface of our online shopping platform. With this frontend, users can interact with the backend services to browse products, add items to their cart, proceed through checkout, and manage their orders efficiently.
 
@@ -84,8 +83,7 @@ yarn dev
 
 ## Contributors
 
-- John Doe (@johndoe)
-- Jane Smith (@janesmith)
+-Jasmit Singh
 
 ## License
 
