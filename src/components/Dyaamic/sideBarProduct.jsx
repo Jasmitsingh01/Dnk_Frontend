@@ -6,9 +6,13 @@ function SideBarProduct({setprice,setname}) {
   return (
     <div className=" bg-transparent w-full ">
       <form>
-        <div className=" flex mb-10">
+        <div className=" flex flex-col mb-10">
+        <label htmlFor="name" className=" text-4xl mb-3">
+            Filter by Name
+          </label>
           <input
             type="text"
+            id="name"
             placeholder="Search product..."
             className=" p-2 w-full shadow outline-none me-3"
             onChange={(e)=>setname(e.target.value)}
