@@ -83,6 +83,7 @@ export const useLogout = () => {
     .post("user/logout")
     .then(() => {
       toast.success("User Logged Out Successfully");
+      window.location.href = "/";
     })
     .catch((err) => {
       toast.error(err?.response?.data);

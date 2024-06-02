@@ -9,8 +9,7 @@ function AllProducts() {
   const [product, setproduct] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-    useGetProduct().then((data) => {
-      console.log(data);
+    useGetProduct('',true).then((data) => {
       setproduct(data?.product);
     });
     if (!Authencation) {

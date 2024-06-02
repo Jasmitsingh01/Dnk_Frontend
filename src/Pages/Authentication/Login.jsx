@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useLogin } from "../../services/auth";
 export default function Login() {
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register ,formState:{errors}} = useForm();
   const Active = useSelector((state) => state.Location.AdminSide);
   const sumbit = (logindata) => {
     if (Active) {
@@ -69,6 +69,7 @@ export default function Login() {
                 id="password"
                 name="password"
                 type="password"
+                pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
                 autoComplete="current-password"
                 required
                 {...register("password")}

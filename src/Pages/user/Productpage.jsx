@@ -14,7 +14,8 @@ function Productpage() {
   const [current_Page, setcurrent_Page] = useState(0);
   const [next, setnext] = useState(true);
   const [prve, setprve] = useState(true);
-
+  const [name,setnameFilter]=useState('')
+  const [price,setpriceFilter]=useState(undefined)
   const Location = useLocation();
   useEffect(() => {
     setCurrent(Location.pathname.substring(7).toUpperCase());
@@ -35,7 +36,6 @@ function Productpage() {
     } else if (Location.pathname.substring(7).toUpperCase() === "EVERYTHING") {
       const Data = useGetProduct({});
       Data.then((data) => {
-        console.log(data);
         setpages_total(data?.Total_number_pages);
         setdata(data?.product);
       }).catch((error) => {
@@ -64,7 +64,7 @@ function Productpage() {
   return (
     <div className=" bg-slate-300 flex flex-col lg:flex-row py-10 relative m-h-[100vh]  ">
       <div className="w-full p-5  lg:w-1/3">
-        <SideBarProduct />
+        <SideBarProduct setname={setnameFilter} setprice={setpriceFilter} />
       </div>
 
       <div className="bg-white w-full  p-5 ">
@@ -77,7 +77,8 @@ function Productpage() {
           augue. Sed non neque elit sed ut.
         </p>
         <div className=" grid grid-cols-2 md:grid-cols-3  gap-y-3   md:gap-5  justify-items-center mb-10">
-          {data.map((Product) => {
+          {data.filter((Product)=>Product.product_name.toLowerCase().includes(name.toLowerCase())).filter((Product)=>{if(price==undefined || price==0)return Product
+          return Product.product_price <= price}).map((Product) => {
             return (
               <ProductCard
                 key={Product?._id}

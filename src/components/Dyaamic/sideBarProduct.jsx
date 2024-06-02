@@ -1,8 +1,8 @@
 import React from "react";
 
-import { FaChevronRight } from "react-icons/fa";
 
-function SideBarProduct() {
+function SideBarProduct({setprice,setname}) {
+  
   return (
     <div className=" bg-transparent w-full ">
       <form>
@@ -11,13 +11,10 @@ function SideBarProduct() {
             type="text"
             placeholder="Search product..."
             className=" p-2 w-full shadow outline-none me-3"
+            onChange={(e)=>setname(e.target.value)}
           />
-          <button
-            type="button"
-            className=" px-2  text-white w-[50px] bg-blue-600 text-xl"
-          >
-            <FaChevronRight />
-          </button>
+          
+        
         </div>
         <div className=" mb-3">
           <label htmlFor="range" className=" text-4xl">
@@ -25,7 +22,7 @@ function SideBarProduct() {
           </label>
         </div>
         <div className=" mb-10">
-          <input type="range" className=" w-1/2" />
+          <input type="range" className=" w-1/2" min={10} max={1000} onChange={(e)=>setprice(e.target.value)} />
         </div>
         <button
           type="button"

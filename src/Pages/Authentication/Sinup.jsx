@@ -6,7 +6,14 @@ import { useSignUp } from "../../services/auth";
 
 function Singup() {
   const { AdminSide } = useSelector((state) => state.Location);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      conatct_number: "",
+    },
+  });
   const Submit = (SingupData) => {
     if (AdminSide) {
       const data = {
@@ -43,7 +50,7 @@ function Singup() {
             method="POST"
             onSubmit={handleSubmit(Submit)}
           >
-            <div>
+         
               <label
                 htmlFor="name"
                 className="block text-sm font-medium leading-6 text-gray-900"
@@ -59,7 +66,7 @@ function Singup() {
                   {...register("name")}
                   className="block px-3 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
-              </div>
+               
             </div>
             <div>
               <label
@@ -73,10 +80,13 @@ function Singup() {
                   id="contact"
                   name="contact"
                   type="number"
+                  minLength={10}
+                  maxLength={10}
                   required
                   {...register("conatct_number")}
                   className="block px-3 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+          
               </div>
             </div>
             <div>
@@ -96,6 +106,7 @@ function Singup() {
                   {...register("email")}
                   className="block px-3 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                
               </div>
             </div>
 
@@ -108,12 +119,7 @@ function Singup() {
                   Password
                 </label>
                 <div className="text-sm">
-                  <a
-                    href="#"
-                    className="font-semibold px-3 text-indigo-600 hover:text-indigo-500"
-                  >
-                    Forgot password?
-                  </a>
+                
                 </div>
               </div>
               <div className="mt-2">
@@ -121,11 +127,14 @@ function Singup() {
                   id="password"
                   name="password"
                   type="password"
+                  pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+
                   autoComplete="current-password"
                   required
                   {...register("password")}
                   className="block px-3 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+      
               </div>
             </div>
 
