@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const FormDataApi = axios.create({
   withCredentials: true,
-  baseURL: "http://localhost:4000/api/",
+  baseURL: "https://dnk-backend.onrender.com/api/",
   headers: {
     "Access-Control-Allow-Origin": "*",
     "Content-Type": "application/multipart/form-data",
@@ -12,7 +12,7 @@ export const FormDataApi = axios.create({
 
 export const api = axios.create({
   withCredentials: true,
-  baseURL: "http://localhost:4000/api/",
+  baseURL: "https://dnk-backend.onrender.com/api/",
   headers: {
     "Access-Control-Allow-Origin": "*",
     Authorization: "Bearer " + localStorage.getItem("_user_access_token"),
