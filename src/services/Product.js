@@ -12,7 +12,7 @@ export const useCreateProduct = (data) => {
     });
 };
 
-export const updateProduct = (data, id) => {
+export const updateProduct = (data, id,setloading) => {
   api
     .put(`/product/single/${id}`, data)
     .then((product) => {
@@ -22,6 +22,8 @@ export const updateProduct = (data, id) => {
     .catch((err) => {
       console.log(err);
       toast.error(err.data.data.message || "Something went wrong");
+    }).finally(()=>{
+      setloading(false)
     });
 };
 
