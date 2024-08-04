@@ -20,7 +20,7 @@ function CartCard() {
   const createOrder = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/payment/create-paypal-order",
+        `${import.meta.env.VITE_order_url}/payment/create-paypal-order`,
         { cart: Cart_items, price: total_price }
       );
 
@@ -43,7 +43,7 @@ function CartCard() {
   const Approve = async (data, actions) => {
     try {
       const response = await axios.post(
-        `http://localhost:4000/api/payment/order/${data.orderID}/capture`
+        `${import.meta.env.VITE_order_url}/payment/order/${data.orderID}/capture`
       );
       console.log(response);
       const orderData = await response.data?.data;

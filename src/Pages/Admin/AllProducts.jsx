@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useLayoutEffect, useState } from "react";
 
 import ProductCard from "../../components/Dyaamic/ProductCard";
 import AdminPageHeader from "../../components/static/AdminPageHeader";
@@ -8,7 +8,7 @@ import Authencation from "../../utils/authencation";
 function AllProducts() {
   const [product, setproduct] = useState([]);
   const navigate = useNavigate();
-  useEffect(() => {
+  useLayoutEffect(() => {
     useGetProduct('',true).then((data) => {
       setproduct(data?.product);
     });

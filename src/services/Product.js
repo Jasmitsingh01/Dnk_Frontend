@@ -39,7 +39,7 @@ export const useDeleteProduct = (id) => {
 
 export const useGetProduct = async (url,isAdmin) => {
   const Data = await api.get(
-    `/product/all?product_for_gender=${url?.gender}&product_category=${url?.category}${isAdmin ? `&is_Admin=${isAdmin}` :''}`
+    `/product/all?${url?.gender ? `product_for_gender=${url?.gender}`:''}${url?.category?`&product_category=${url?.category}`:''}${isAdmin ? `&is_Admin=${isAdmin}` :''}`
   );
   return Data.data?.data;
 };
