@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useLogin } from "../../services/auth";
 export default function Login() {
-  const { handleSubmit, register ,formState:{errors}} = useForm();
+  const { handleSubmit, register } = useForm();
   const Active = useSelector((state) => state.Location.AdminSide);
   const sumbit = (logindata) => {
     if (Active) {
@@ -19,6 +19,13 @@ export default function Login() {
       useLogin(logindata);
     }
   };
+  window.addEventListener('keyup', (e) => {
+    if (e.getModifierState('CapsLock')) {
+        alert("Caps Lock is on");
+    } else {
+        console.log("Caps Lock is off");
+    }
+});
   return (
     <section className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
