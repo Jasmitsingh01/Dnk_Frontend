@@ -17,7 +17,6 @@ import {
   AddProduct,
   AllProducts,
   Dashbord,
-  Invoice,
   Orderhistory,
 } from "./Pages/Admin";
 import { Profile } from "./Pages/Profile";
@@ -40,7 +39,6 @@ const App = () => {
         <Route path="/admin/singup" element={<Singup />} />
         <Route path="/admin/addProduct" element={<AddProduct />} />
         <Route path="/admin/allProduct" element={<AllProducts />} />
-        <Route path="/admin/invoice" element={<Invoice />} />
         <Route path="/admin/allorder" element={<Orderhistory />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/order" element={<Order />} />
