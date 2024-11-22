@@ -1,7 +1,7 @@
 import { FormDataApi, api } from "./index.js";
 import { toast } from "react-toastify";
 export const useCreateProduct = (data) => {
-  FormDataApi.post("/product/", data)
+  FormDataApi.post("/product/?isAdmin=true", data)
     .then((response) => {
       console.log(response);
       toast.success("Product Created successfully");
@@ -12,9 +12,9 @@ export const useCreateProduct = (data) => {
     });
 };
 
-export const updateProduct = (data, id,setloading) => {
+export const updateProduct = (data, id) => {
   api
-    .put(`/product/single/${id}`, data)
+    .put(`/product/single/${id}?isAdmin=true`, data)
     .then((product) => {
       console.log(product);
       toast.success("Product updated successfully");
@@ -22,13 +22,11 @@ export const updateProduct = (data, id,setloading) => {
     .catch((err) => {
       console.log(err);
       toast.error(err.data.data.message || "Something went wrong");
-    }).finally(()=>{
-      setloading(false)
-    });
+    })
 };
 
 export const useDeleteProduct = (id) => {
-  FormDataApi.delete(`/product/${id}`)
+  api.delete(`/product/single/${id}?isAdmin=true`)
     .then((response) => {
       console.log(response);
     })
@@ -39,9 +37,14 @@ export const useDeleteProduct = (id) => {
 
 export const useGetProduct = async (url,isAdmin) => {
   const Data = await api.get(
-    `/product/all?${url?.gender ? `product_for_gender=${url?.gender}`:''}${url?.category?`&product_category=${url?.category}`:''}${isAdmin ? `&is_Admin=${isAdmin}` :''}`
+    `/product/all?${url?.gender ? `product_for_gender=${url?.gender}`:''}${url?.category?`&product_category=${url?.category}`:''}${isAdmin ? `&isAdmin=${isAdmin}` :''}`
   );
   return Data.data?.data;
+};    
+
+export const useAdminGetAllProducts = async () => {
+  const data = await api.get(`/product/admin/all?isAdmin=true`);
+  return data.data?.data;
 };
 
 export const useFindParticularProduct = async (id) => {

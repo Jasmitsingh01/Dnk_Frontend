@@ -3,7 +3,7 @@ import { useState } from "react";
 import AdminPageHeader from "../../components/static/AdminPageHeader";
 import { MdDriveFolderUpload } from "react-icons/md";
 import { useForm } from "react-hook-form";
-import { useCreateProduct } from "../../services/Product";
+import { useCreateProduct,updateProduct } from "../../services/Product";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Authencation from "../../utils/authencation";
@@ -23,6 +23,7 @@ function AddProduct() {
       setProduct_image([...product_image, element]);
     }
   };
+  console.log(editData);
   const sumbit = (FormDatas) => {
     const formData = new FormData();
     for (const key in FormDatas) {
@@ -34,7 +35,16 @@ function AddProduct() {
       formData.append("product_image", product_image[i]);
     }
     if (!editData) {
+      for (const key in FormDatas) {
+        if (Object.hasOwnProperty.call(FormDatas, key)&& FormDatas[key]!==editData[key]) {
+          formData.append(`${key}`, FormDatas[key]);
+        }
+      }
       useCreateProduct(formData);
+    }
+    else{
+      console.log(editData)
+      updateProduct(formData,editData?._id)
     }
   };
   useEffect(() => {
@@ -65,6 +75,7 @@ function AddProduct() {
               placeholder="Product Title"
               id="title"
               name="title"
+              required
               {...register("product_name")}
               className=" border-2 outline-none rounded p-2 mb-2 w-full"
             />
@@ -85,6 +96,7 @@ function AddProduct() {
               placeholder="Product Code"
               id="code"
               name="code"
+              required
               {...register("product_Code")}
               className=" border-2 outline-none rounded p-2 mb-2 w-full"
             />
@@ -105,6 +117,7 @@ function AddProduct() {
               placeholder="Product Qunatity"
               id="qunatity"
               name="qunatity"
+              required
               className=" border-2 outline-none rounded p-2 mb-2 w-full"
               {...register("product_quantity")}
             />
@@ -123,6 +136,7 @@ function AddProduct() {
               placeholder="Product Brand"
               id="Brand"
               name="Brand"
+              required
               className=" border-2 outline-none rounded p-2 mb-2 w-full"
               {...register("product_brand")}
             />
@@ -138,6 +152,7 @@ function AddProduct() {
             <select
               name="Catogaries"
               id="Catogaries"
+              required
               className=" border-2 p-2 rounded outline-none w-full"
               {...register("product_category")}
             >
@@ -157,6 +172,7 @@ function AddProduct() {
               name="Gender"
               {...register("product_for_gender")}
               id="Gender"
+              required
               className=" border-2 p-2 rounded outline-none w-full"
             >
               <option value="men">Men</option>
@@ -287,6 +303,7 @@ function AddProduct() {
                 name="Sizes"
                 id="3xl"
                 className=" hidden"
+                required
                 value={"3xl"}
                 {...register("product_size")}
                 onClick={(e) => setsize(e.target.value)}
@@ -303,6 +320,7 @@ function AddProduct() {
             <select
               name="visibilty"
               id="visibilty"
+              required
               {...register("product_status")}
               className=" border-2 p-2 rounded outline-none"
             >
@@ -321,6 +339,7 @@ function AddProduct() {
             <input
               type="number"
               name="price"
+              required
               id="price"
               {...register("product_price")}
               placeholder="price"
@@ -339,6 +358,7 @@ function AddProduct() {
               type="number"
               name="Discount"
               id="Discount"
+              required
               placeholder="Discount Price"
               className=" border-2 outline-none rounded p-2 mb-2 w-full"
               {...register("product_discount_price")}
@@ -355,6 +375,7 @@ function AddProduct() {
               name="discription"
               id="discription"
               cols="30"
+              required
               rows="10"
               {...register("product_description")}
               placeholder="Discription...."
@@ -378,6 +399,7 @@ function AddProduct() {
                 name="product_image"
                 id="prpductImage"
                 multiple
+                required
                 onChange={(e) => Images(e)}
                 className=" opacity-0  w-full h-full absolute top-0 left-0"
               />

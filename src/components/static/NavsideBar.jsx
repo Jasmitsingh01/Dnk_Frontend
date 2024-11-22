@@ -5,7 +5,6 @@ import { GiShoppingBag } from "react-icons/gi";
 import { useState } from "react";
 import { useEffect } from "react";
 import { AiOutlineDashboard } from "react-icons/ai";
-import { FaUserCircle } from "react-icons/fa";
 import { TbFileInvoice } from "react-icons/tb";
 import { MdAddShoppingCart } from "react-icons/md";
 
@@ -53,13 +52,7 @@ function NavsideBar() {
           name: "Invoice",
           icon: <TbFileInvoice />,
           urls: "/admin/invoice",
-        },
-       
-        {
-          name: "Profile",
-          icon: <FaUserCircle />,
-          urls: "/profile",
-        },
+        }
        
       ]);
     }

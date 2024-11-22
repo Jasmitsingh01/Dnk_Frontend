@@ -77,18 +77,26 @@ function Navbar({ color, Data }) {
               Contact us
             </Link>
           </li>
-          {logged ? (
+          {logged && Data?.length > 0 ? (
             <li className="z-20 hidden lg:block lg:me-2">
               <Link to="/profile" className=" text-xl text-white ">
                 <FaUser />
               </Link>
             </li>
           ) : (
-            <li className="z-20 hidden lg:block lg:me-2">
-              <Link to="/signin" className=" text-xl text-white ">
-                Login
-              </Link>
-            </li>
+            Data?.length > 0 && logged ? (
+              <li className="z-20 hidden lg:block lg:me-2">
+                <Link to="/profile" className=" text-xl text-white ">
+                  <FaUser />
+                </Link>
+              </li>
+            ) : Data?.length > 0 && !logged ? (
+              <li className="z-20 hidden lg:block lg:me-2">
+                <Link to="/signin" className=" text-xl text-white ">
+                  Login
+                </Link>
+              </li>
+            ) : null
           )}
 
           {Data?.length > 0 ? (

@@ -3,7 +3,6 @@ import { FaCaretRight } from "react-icons/fa";
 import { MdSpaceDashboard } from "react-icons/md";
 import { BiSolidCartAlt } from "react-icons/bi";
 import { BiSitemap } from "react-icons/bi";
-import { AiFillContainer } from "react-icons/ai";
 import logo1 from "../../assets/black_logo.png";
 import { useState } from "react";
 import { HideSideBar } from "/src/Slices/Admin.slice";
@@ -17,7 +16,6 @@ function SidebarAdmin() {
   const Side = useSelector((state) => state.Location.AdminSidebar);
   const [Product, setProduct] = useState(false);
   const [order, setorder] = useState(false);
-  const [billing, setbilling] = useState(false);
   useEffect(() => {
     window.addEventListener("scroll", (e) => {
       if (e.currentTarget.scrollY > 87) {
@@ -93,23 +91,7 @@ function SidebarAdmin() {
             </li>
           </ul>
         </div>
-        <div className="mb-5 ">
-          <button className="flex items-center my-3 bg-blue-400 justify-between gap-3 py-2 rounded w-full">
-            <span
-              className="flex items-center gap-3 mx-auto"
-              onClick={() => setbilling(!billing)}
-            >
-              <AiFillContainer />
-              Billing
-            </span>
-            <FaCaretRight />
-          </button>
-          <ul className={`${billing ? "" : "hidden"}`}>
-            <li>
-              <Link to={"/admin/invoice"}>Create Invoice</Link>
-            </li>
-          </ul>
-        </div>
+       
       </div>
     </aside>
   );

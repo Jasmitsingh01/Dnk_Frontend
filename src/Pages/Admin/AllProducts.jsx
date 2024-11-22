@@ -1,21 +1,27 @@
-import React, {  useLayoutEffect, useState } from "react";
+import React, {   useLayoutEffect, useState } from "react";
 
 import ProductCard from "../../components/Dyaamic/ProductCard";
 import AdminPageHeader from "../../components/static/AdminPageHeader";
-import { useGetProduct } from "../../services/Product";
+import { useAdminGetAllProducts } from "../../services/Product";
 import { useNavigate } from "react-router-dom";
 import Authencation from "../../utils/authencation";
 function AllProducts() {
   const [product, setproduct] = useState([]);
   const navigate = useNavigate();
+  const [gender, setgender] = useState("");
   useLayoutEffect(() => {
-    useGetProduct('',true).then((data) => {
-      setproduct(data?.product);
+    useAdminGetAllProducts().then((data) => {
+      setproduct(data);
     });
     if (!Authencation) {
       navigate("/admin/signin");
     }
   }, []);
+  const filterProduct =()=>{
+    if(!gender){
+      return product.filter((item)=>item.product_for_gender.includes(gender))
+    }
+  }
   return (
     <div className="w-full">
       <AdminPageHeader value={"Product Grid"} />
@@ -23,7 +29,7 @@ function AllProducts() {
         Select Product Category
       </div>
       <div className=" flex justify-end me-5 mb-5">
-        <select className="rounded border-2 outline-none p-2 w-1/6">
+        <select className="rounded border-2 outline-none p-2 w-1/6" onChange={(e)=>{setgender(e.target.value);filterProduct()}}>
           <option>Men</option>
           <option>Women</option>
           <option>child</option>

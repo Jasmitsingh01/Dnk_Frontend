@@ -42,7 +42,7 @@ function TopNavAdmin() {
           } absolute right-2 rounded border-2 bg-white z-10`}
         >
           <li className="p-2 border-b-2">
-            <Link to="/admin/profile">View Proflie</Link>
+            <Link to="/profile">View Proflie</Link>
           </li>
         </ul>
       </div>
