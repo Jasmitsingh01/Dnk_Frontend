@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { user_Authencation } from "../../utils/authencation";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import {
   useLogout,
   useUpdateuser,
@@ -8,6 +9,7 @@ import {
 } from "../../services/auth.js";
 import { useForm } from "react-hook-form";
 function Profile() {
+  const { AdminSide } = useSelector((state) => state.Location);
   const [edit, setEdit] = useState(false);
   const [logged, setLogged] = useState(false);
   const [user, setuser] = useState(null);
@@ -15,7 +17,7 @@ function Profile() {
   useEffect(() => {
     if (user_Authencation()) {
       setLogged(true);
-      useUserDeatils()
+      useUserDeatils(AdminSide)
         .then((users) => {
           setuser(users);
           localStorage.setItem("_user_address", users?.address);
@@ -31,7 +33,7 @@ function Profile() {
   }, [edit]);
   const { handleSubmit, register } = useForm();
   const updateUserHandler = (data) => {
-    useUpdateuser(data);
+    useUpdateuser(data, AdminSide);
   };
   const logouthandler = () => {
     localStorage.clear();

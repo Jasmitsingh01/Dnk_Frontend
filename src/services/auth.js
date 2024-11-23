@@ -89,9 +89,9 @@ export const useLogout = () => {
       toast.error(err?.response?.data);
     });
 };
-export const useUpdateuser = (data) => {
+export const useUpdateuser = (data, AdminSide) => {
   api
-    .post("user/update", data)
+    .post(`user/update?${AdminSide ? "isAdmin=true" : ""}`, data)
     .then(() => {
       toast.success("User Updated Successfully");
     })
@@ -100,7 +100,7 @@ export const useUpdateuser = (data) => {
       toast.error(err?.response?.data?.message);
     });
 };
-export const useUserDeatils = async () => {
-  const Data = await api.get("user/detils");
+export const useUserDeatils = async (AdminSide) => {
+  const Data = await api.get(`user/detils?${AdminSide ? "isAdmin=true" : ""}`);
   return Data?.data?.data;
 };
